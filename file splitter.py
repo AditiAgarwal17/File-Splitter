@@ -6,11 +6,10 @@ n = int(input("Enter number of partitions:"))
 x=open(file_name,"rb")
 y=x.read()
 chars=len(y)//n
+name, ext = os.path.splitext(file_name)
 def splitter(y,chars):
-    global file_name
-    global n
     for i in range(n):
-        a=open("a"+str(i+1)+".txt","wb")
+        a=open("a"+str(i+1)+".prt","wb")
         a.write(y[:chars])
         y = y[chars:]
         if(len(y)<chars):
@@ -19,12 +18,10 @@ def splitter(y,chars):
     #showinfo("result", "File Successfully Split")
 
 def joiner(y):
-    global file_name
-    global n
     for i in range(n):
-        a = open("a" + str(i + 1) + ".txt", "rb")
+        a = open("a" + str(i + 1) + ".prt", "rb")
         a=a.read()
-        joinedFile=open("JoinedFile.txt","ab")
+        joinedFile=open("JoinedFile"+ext,"ab")
         joinedFile.write(a)
     #showinfo("result", "File Successfully Joined")
 #def window():
@@ -55,4 +52,3 @@ def joiner(y):
 splitter(y,chars)
 joiner(y)
 x.close()
-
